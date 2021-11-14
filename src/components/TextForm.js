@@ -43,10 +43,10 @@ export default function TextForm(props) {
    
     return (
         <>
-        <div className="container">
+        <div className="container" style={{color: props.mode === 'dark' ? 'white' : '#0f1d3e'}}>
             <h1>{props.heading} </h1>
             <div className="mb-3">
-                <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="10"></textarea>
+                <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode === 'dark' ? 'rgb(15 44 63 / 0.88)' : 'white', color: props.mode === 'dark' ? '#c9f90b' : 'black'}} id="myBox" rows="10"></textarea>
             </div>
             <button className="btn btn-primary m-1" onClick={handleUpClick}>
                 Convert to Uppercase
@@ -61,12 +61,12 @@ export default function TextForm(props) {
                 Save to Word file
             </button>
         </div>
-        <div className="container my-3">
+        <div className="container my-3" style={{color: props.mode === 'dark' ? 'white' : 'black'}}>
             <h1>Your text summary</h1>
             <p>{text.split(" ").length} Words and {text.length} Characters</p>
-            <p>{0.008 * text.split(" ").length} Minutes to read</p>
+            <p>{parseFloat(0.008 * text.split("").length).toFixed(2)} Minutes to read</p>
             <h2>Preview</h2>
-            <p>{text}</p>
+            <p style={text.length === 0?{color: props.mode === 'dark' ? 'white' : 'black'}:{color: props.mode === 'dark' ? '#c9f90b' : 'black'}}>{text.length > 0 ? text : "Enter something in the text box above to preview it"}</p>
         </div>
         </>
     )
